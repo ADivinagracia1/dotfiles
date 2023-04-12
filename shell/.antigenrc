@@ -1,0 +1,38 @@
+antigen use oh-my-zsh
+
+# Plugins
+antigen bundles <<EOBUNDLES
+ssh-agent
+command-not-found
+colored-man-pages
+magic-enter
+extract
+git
+kubectl
+aliases
+common-aliases
+python
+docker docker-compose
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-history-substring-search
+unixorn/autoupdate-antigen.zshplugin
+EOBUNDLES
+
+case `uname` in
+  Darwin)
+    # Commands for OS X go here
+    antigen bundle osx
+    antigen bundle brew
+  ;;
+  Linux)
+    antigen bundle HeroCC/LS_COLORS
+    antigen bundle rupa/z
+  ;;
+esac
+
+antigen theme romkatv/powerlevel10k
+source ~/.p10k.zsh
+
+antigen apply

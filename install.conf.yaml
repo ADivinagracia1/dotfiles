@@ -1,0 +1,51 @@
+- defaults:
+    link:
+      relink: true
+      create: true
+      force: true
+
+- clean: ['~']
+
+- link:
+    ~/.antigenrc:
+      path: shell/.antigenrc
+    ~/.zshrc: 
+      path: shell/.zshrc
+    ~/.exports: 
+      path: shell/.exports
+    ~/.aliases:
+      path: shell/.aliases
+    ~/.functions:
+      path: shell/.functions
+    ~/.path:
+      path: shell/.path
+    ~/.p10k.zsh:
+      path: shell/.p10k.zsh
+    ~/.editorconfig:
+      path: editor/.editorconfig
+    ~/.gitconfig: 
+      path: git/.gitconfig
+    ~/Library/Application\ Support/Code/User/settings.json:
+      if: '[ `uname` = Darwin ]'
+      path: vscode/settings.json
+    ~/.config/Code/User/settings.json:
+      if: '[ `uname` = Linux ]'
+      path: vscode/settings.json
+
+- shell:
+  - 
+    command: cd setup && chmod u+x setup.sh && ./setup.sh && cd -
+    stdout: true
+    stderr: true
+    description: Running setup script
+  - 
+    command: mkdir -p antigen && curl -L git.io/antigen > antigen/antigen.zsh
+    stdout: true
+    stderr: true
+    description: Installing Antigen
+  - 
+    command: sudo chsh -s $(which zsh) $(whoami)
+    stdout: true
+    stderr: true
+    description: Changing shell to zsh
+
